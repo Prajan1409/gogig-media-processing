@@ -82,7 +82,7 @@ function App() {
         setResult({
           error:
             statusData.failure_reason ||
-            "Image processing failed"
+            "Image processing failed",
         });
 
         setLoading(false);
@@ -94,16 +94,15 @@ function App() {
       setResult({
         processing_id: processingId,
         status: statusData.status,
-        filename: file?.name
+        filename: file?.name,
       });
 
       setTimeout(() => {
         checkProcessingStatus(processingId);
       }, 1000);
-
     } catch (error) {
       setResult({
-        error: error.message
+        error: error.message,
       });
 
       setLoading(false);
@@ -129,7 +128,7 @@ function App() {
         `${API_URL}/images`,
         {
           method: "POST",
-          body: formData
+          body: formData,
         }
       );
 
@@ -146,10 +145,9 @@ function App() {
       checkProcessingStatus(
         data.processing_id
       );
-
     } catch (error) {
       setResult({
-        error: error.message
+        error: error.message,
       });
 
       setLoading(false);
@@ -262,7 +260,7 @@ function App() {
 
       className: isDuplicate
         ? "warning"
-        : "success"
+        : "success",
     };
   };
 
@@ -374,6 +372,7 @@ function App() {
           <h1>
 
             Intelligent
+
             <span>
               {" "}Media Analysis
             </span>
@@ -382,12 +381,10 @@ function App() {
 
 
           <p>
-
             Upload an image and let gOGig
             automatically evaluate image quality,
             dimensions, OCR, duplicates and
             photo authenticity signals.
-
           </p>
 
         </section>
@@ -399,13 +396,11 @@ function App() {
 
         <section className="workspace">
 
-
           {/* =================================================
               SOURCE IMAGE PANEL
           ================================================= */}
 
           <div className="source-panel">
-
 
             <div className="panel-heading">
 
@@ -625,28 +620,28 @@ function App() {
                 {!analysis &&
                   !loading && (
 
-                  <div className="issue-empty">
+                    <div className="issue-empty">
 
-                    <div className="issue-status-icon neutral">
-                      ◇
+                      <div className="issue-status-icon neutral">
+                        ◇
+                      </div>
+
+                      <div>
+
+                        <strong>
+                          No findings yet
+                        </strong>
+
+                        <p>
+                          Run image analysis to identify
+                          potential issues.
+                        </p>
+
+                      </div>
+
                     </div>
 
-                    <div>
-
-                      <strong>
-                        No findings yet
-                      </strong>
-
-                      <p>
-                        Run image analysis to identify
-                        potential issues.
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                )}
+                  )}
 
 
                 {/* PROCESSING */}
@@ -684,28 +679,28 @@ function App() {
                 {analysis &&
                   overallAnalysis.issue_count === 0 && (
 
-                  <div className="issue-clear">
+                    <div className="issue-clear">
 
-                    <div className="issue-status-icon success">
-                      ✓
+                      <div className="issue-status-icon success">
+                        ✓
+                      </div>
+
+                      <div>
+
+                        <strong>
+                          No major issues detected
+                        </strong>
+
+                        <p>
+                          {overallAnalysis.message ||
+                            "Image passed the main quality checks."}
+                        </p>
+
+                      </div>
+
                     </div>
 
-                    <div>
-
-                      <strong>
-                        No major issues detected
-                      </strong>
-
-                      <p>
-                        {overallAnalysis.message ||
-                          "Image passed the main quality checks."}
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                )}
+                  )}
 
 
                 {/* ISSUES FOUND */}
@@ -713,84 +708,86 @@ function App() {
                 {analysis &&
                   overallAnalysis.issue_count > 0 && (
 
-                  <div className="issue-findings">
+                    <div className="issue-findings">
 
-                    {overallAnalysis.issue_details?.map(
-                      (issue, index) => (
+                      {overallAnalysis.issue_details?.map(
+                        (issue, index) => (
 
-                      <div
-                        className="issue-finding"
-                        key={index}
-                      >
+                          <div
+                            className="issue-finding"
+                            key={index}
+                          >
 
-                        <div
-                          className={`issue-status-icon ${
-                            issue.severity === "error"
-                              ? "danger"
-                              : issue.severity === "warning"
-                              ? "warning"
-                              : "neutral"
-                          }`}
-                        >
-                          !
-                        </div>
-
-
-                        <div className="issue-finding-content">
-
-                          <div className="issue-finding-top">
-
-                            <strong>
-                              {issue.message}
-                            </strong>
-
-                            <span
-                              className={`issue-severity ${
-                                issue.severity
+                            <div
+                              className={`issue-status-icon ${
+                                issue.severity === "error"
+                                  ? "danger"
+                                  : issue.severity === "warning"
+                                  ? "warning"
+                                  : "neutral"
                               }`}
                             >
-                              {issue.severity}
-                            </span>
+                              !
+                            </div>
+
+
+                            <div className="issue-finding-content">
+
+                              <div className="issue-finding-top">
+
+                                <strong>
+                                  {issue.message}
+                                </strong>
+
+                                <span
+                                  className={`issue-severity ${
+                                    issue.severity
+                                  }`}
+                                >
+                                  {issue.severity}
+                                </span>
+
+                              </div>
+
+
+                              {issue.duplicate_file && (
+
+                                <p>
+
+                                  Matched file:{" "}
+
+                                  <strong>
+                                    {issue.duplicate_file}
+                                  </strong>
+
+                                </p>
+
+                              )}
+
+                            </div>
 
                           </div>
 
+                        )
+                      )}
 
-                          {issue.duplicate_file && (
 
-                            <p>
-                              Matched file:{" "}
+                      <div className="issue-recommendation">
 
-                              <strong>
-                                {issue.duplicate_file}
-                              </strong>
+                        <span>
+                          RECOMMENDATION
+                        </span>
 
-                            </p>
-
-                          )}
-
-                        </div>
+                        <strong>
+                          {overallAnalysis.recommendation ||
+                            "Manual review recommended"}
+                        </strong>
 
                       </div>
 
-                    ))}
-
-
-                    <div className="issue-recommendation">
-
-                      <span>
-                        RECOMMENDATION
-                      </span>
-
-                      <strong>
-                        {overallAnalysis.recommendation ||
-                          "Manual review recommended"}
-                      </strong>
-
                     </div>
 
-                  </div>
-
-                )}
+                  )}
 
               </div>
 
@@ -804,7 +801,6 @@ function App() {
           ================================================= */}
 
           <div className="analysis-panel">
-
 
             <div className="panel-heading">
 
@@ -883,463 +879,415 @@ function App() {
             {result &&
               !result.error && (
 
-              <div className="results-content">
+                <div className="results-content">
 
+                  {/* PROCESSING */}
 
-                {/* PROCESSING */}
+                  {result.status !== "completed" && (
 
-                {result.status !== "completed" && (
+                    <div className="processing-card">
 
-                  <div className="processing-card">
-
-                    <div className="processing-spinner">
-                      <span></span>
-                    </div>
-
-                    <div>
-
-                      <span className="eyebrow">
-                        PROCESSING
-                      </span>
-
-                      <h3>
-                        {result.status === "processing"
-                          ? "Analyzing image..."
-                          : "Image queued"}
-                      </h3>
-
-                      <p>
-                        gOGig is running the media
-                        analysis pipeline.
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                )}
-
-
-                {/* COMPLETED */}
-
-                {result.status === "completed" &&
-                  analysis && (
-
-                  <>
-
-
-                    {/* SUMMARY */}
-
-                    <div className="summary-banner">
-
-                      <div className="summary-indicator">
-                        ✓
+                      <div className="processing-spinner">
+                        <span></span>
                       </div>
 
                       <div>
 
-                        <span>
-                          ANALYSIS COMPLETE
+                        <span className="eyebrow">
+                          PROCESSING
                         </span>
 
-                        <strong>
+                        <h3>
 
-                          {analysis.image?.width}
-                          {" × "}
-                          {analysis.image?.height}px
+                          {result.status === "processing"
+                            ? "Analyzing image..."
+                            : "Image queued"}
 
-                          {" · "}
+                        </h3>
 
-                          {analysis.image?.format}
-
-                          {" · "}
-
-                          {blurAnalysis.status ||
-                            "analyzed"}
-
-                        </strong>
+                        <p>
+                          gOGig is running the media
+                          analysis pipeline.
+                        </p>
 
                       </div>
 
                     </div>
 
-
-                    {/* CHECK GRID */}
-
-                    <div className="check-grid">
+                  )}
 
 
-                      {/* BLUR */}
+                  {/* COMPLETED */}
 
-                      <div className="check-card">
+                  {result.status === "completed" &&
+                    analysis && (
 
-                        <span className="check-label">
-                          BLUR
-                        </span>
+                      <>
 
-                        <strong>
+                        {/* SUMMARY */}
 
-                          {blurAnalysis.score ??
-                            "N/A"}
+                        <div className="summary-banner">
 
-                        </strong>
+                          <div className="summary-indicator">
+                            ✓
+                          </div>
 
-                        <div className="check-bottom">
+                          <div>
 
-                          <span
-                            className={`check-status ${getStatusClass(
-                              blurAnalysis.status
-                            )}`}
-                          >
+                            <span>
+                              ANALYSIS COMPLETE
+                            </span>
 
-                            {blurAnalysis.status ||
-                              "Unknown"}
+                            <strong>
 
-                          </span>
+                              {analysis.image?.width}
 
-                          <span className="check-description">
-                            Laplacian variance
-                          </span>
+                              {" × "}
 
-                        </div>
+                              {analysis.image?.height}px
 
-                      </div>
+                              {" · "}
 
+                              {analysis.image?.format}
 
-                      {/* BRIGHTNESS */}
+                              {" · "}
 
-                      <div className="check-card">
+                              {blurAnalysis.status ||
+                                "analyzed"}
 
-                        <span className="check-label">
-                          BRIGHTNESS
-                        </span>
-
-                        <strong>
-
-                          {brightnessAnalysis.score ??
-                            "N/A"}
-
-                        </strong>
-
-                        <div className="check-bottom">
-
-                          <span
-                            className={`check-status ${getStatusClass(
-                              brightnessAnalysis.status
-                            )}`}
-                          >
-
-                            {brightnessAnalysis.status ||
-                              "Unknown"}
-
-                          </span>
-
-                          <span className="check-description">
-                            Mean intensity
-                          </span>
-
-                        </div>
-
-                      </div>
-
-
-                      {/* DIMENSIONS */}
-
-                      <div className="check-card">
-
-                        <span className="check-label">
-                          DIMENSIONS
-                        </span>
-
-                        <strong>
-
-                          {analysis.image?.width}
-                          {" × "}
-                          {analysis.image?.height}
-
-                        </strong>
-
-                        <div className="check-bottom">
-
-                          <span
-                            className={`check-status ${getStatusClass(
-                              dimensionValidation.status
-                            )}`}
-                          >
-
-                            {dimensionValidation.status ||
-                              "Valid"}
-
-                          </span>
-
-                          <span className="check-description">
-                            Image size
-                          </span>
-
-                        </div>
-
-                      </div>
-
-
-                      {/* DUPLICATE */}
-
-                      <div className="check-card">
-
-                        <span className="check-label">
-                          DUPLICATE CHECK
-                        </span>
-
-                        <strong>
-
-                          {duplicateStatus.label}
-
-                        </strong>
-
-                        <div className="check-bottom">
-
-                          <span
-                            className={`check-status ${duplicateStatus.className}`}
-                          >
-
-                            {duplicateStatus.label}
-
-                          </span>
-
-                          <span className="check-description">
-                            File comparison
-                          </span>
-
-                        </div>
-
-
-                        {duplicateDetection.is_duplicate &&
-                          duplicateDetection.duplicate_file && (
-
-                          <div className="duplicate-file">
-
-                            {duplicateDetection.duplicate_file}
+                            </strong>
 
                           </div>
 
-                        )}
-
-                      </div>
+                        </div>
 
 
-                      {/* OCR */}
+                        {/* CHECK GRID */}
 
-                      <div className="check-card">
+                        <div className="check-grid">
 
-                        <span className="check-label">
-                          OCR EXTRACT
-                        </span>
+                          {/* BLUR */}
 
-                        <strong>
+                          <div className="check-card">
 
-                          {ocrAnalysis.detected
-                            ? "Detected"
-                            : "No text"}
+                            <span className="check-label">
+                              BLUR
+                            </span>
 
-                        </strong>
+                            <strong>
 
-                        <div className="check-bottom">
+                              {blurAnalysis.score ??
+                                "N/A"}
 
-                          <span
-                            className={`check-status ${
-                              ocrAnalysis.detected
-                                ? "success"
-                                : "warning"
-                            }`}
-                          >
+                            </strong>
 
-                            {ocrAnalysis.character_count ??
-                              0} chars
+                            <div className="check-bottom">
 
-                          </span>
+                              <span
+                                className={`check-status ${getStatusClass(
+                                  blurAnalysis.status
+                                )}`}
+                              >
 
-                          <span className="check-description">
-                            Text recognition
-                          </span>
+                                {blurAnalysis.status ||
+                                  "Unknown"}
+
+                              </span>
+
+                              <span className="check-description">
+                                Laplacian variance
+                              </span>
+
+                            </div>
+
+                          </div>
+
+
+                          {/* BRIGHTNESS */}
+
+                          <div className="check-card">
+
+                            <span className="check-label">
+                              BRIGHTNESS
+                            </span>
+
+                            <strong>
+
+                              {brightnessAnalysis.score ??
+                                "N/A"}
+
+                            </strong>
+
+                            <div className="check-bottom">
+
+                              <span
+                                className={`check-status ${getStatusClass(
+                                  brightnessAnalysis.status
+                                )}`}
+                              >
+
+                                {brightnessAnalysis.status ||
+                                  "Unknown"}
+
+                              </span>
+
+                              <span className="check-description">
+                                Mean intensity
+                              </span>
+
+                            </div>
+
+                          </div>
+
+
+                          {/* DIMENSIONS */}
+
+                          <div className="check-card">
+
+                            <span className="check-label">
+                              DIMENSIONS
+                            </span>
+
+                            <strong>
+
+                              {analysis.image?.width}
+
+                              {" × "}
+
+                              {analysis.image?.height}
+
+                            </strong>
+
+                            <div className="check-bottom">
+
+                              <span
+                                className={`check-status ${getStatusClass(
+                                  dimensionValidation.status
+                                )}`}
+                              >
+
+                                {dimensionValidation.status ||
+                                  "Valid"}
+
+                              </span>
+
+                              <span className="check-description">
+                                Image size
+                              </span>
+
+                            </div>
+
+                          </div>
+
+
+                          {/* DUPLICATE */}
+
+                          <div className="check-card">
+
+                            <span className="check-label">
+                              DUPLICATE CHECK
+                            </span>
+
+                            <strong>
+                              {duplicateStatus.label}
+                            </strong>
+
+                            <div className="check-bottom">
+
+                              <span
+                                className={`check-status ${duplicateStatus.className}`}
+                              >
+
+                                {duplicateStatus.label}
+
+                              </span>
+
+                              <span className="check-description">
+                                File comparison
+                              </span>
+
+                            </div>
+
+
+                            {duplicateDetection.is_duplicate &&
+                              duplicateDetection.duplicate_file && (
+
+                                <div className="duplicate-file">
+
+                                  {duplicateDetection.duplicate_file}
+
+                                </div>
+
+                              )}
+
+                          </div>
+
+
+                          {/* IMAGE SUMMARY */}
+
+                          <div className="check-card">
+
+                            <span className="check-label">
+                              IMAGE SUMMARY
+                            </span>
+
+                            <strong>
+                              Analysis Complete
+                            </strong>
+
+                            <div className="check-bottom">
+
+                              <span className="check-status success">
+                                Ready
+                              </span>
+
+                              <span className="check-description">
+                                Quality analysis
+                              </span>
+
+                            </div>
+
+                          </div>
+
+
+                          {/* PHOTO CHECK */}
+
+                          <div className="check-card">
+
+                            <span className="check-label">
+                              PHOTO CHECK
+                            </span>
+
+                            <strong>
+
+                              {photoAnalysis.status ||
+                                "Unknown"}
+
+                            </strong>
+
+                            <div className="check-bottom">
+
+                              <span
+                                className={`check-status ${getStatusClass(
+                                  photoAnalysis.status
+                                )}`}
+                              >
+                                Heuristic
+                              </span>
+
+                              <span className="check-description">
+                                Authenticity signal
+                              </span>
+
+                            </div>
+
+                          </div>
 
                         </div>
 
-                      </div>
 
-
-                      {/* PHOTO CHECK */}
-
-                      <div className="check-card">
-
-                        <span className="check-label">
-                          PHOTO CHECK
-                        </span>
-
-                        <strong>
-
-                          {photoAnalysis.status ||
-                            "Unknown"}
-
-                        </strong>
-
-                        <div className="check-bottom">
-
-                          <span
-                            className={`check-status ${getStatusClass(
-                              photoAnalysis.status
-                            )}`}
-                          >
-                            Heuristic
-                          </span>
-
-                          <span className="check-description">
-                            Authenticity signal
-                          </span>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-
-                    {/* OCR EXTRACTION */}
-
-                    <section className="ocr-section">
-
-                      <div className="section-title">
-
-                        <div>
-
-                          <span className="eyebrow">
-                            TEXT RECOGNITION
-                          </span>
-
-                          <h3>
-                            OCR Extraction
-                          </h3>
-
-                        </div>
-
-                        <span className="ocr-count">
-
-                          {ocrAnalysis.character_count ??
-                            0} characters
-
-                        </span>
-
-                      </div>
-
-
-                      <div className="ocr-box">
-
-                        {getOCRText()}
-
-                      </div>
-
-                    </section>
-
-
-                    {/* IMAGE DETAILS */}
-
-                    <section className="details-section">
-
-                      <div className="section-title">
-
-                        <div>
-
-                          <span className="eyebrow">
+                        {/* =================================================
                             IMAGE DETAILS
-                          </span>
+                        ================================================= */}
 
-                          <h3>
-                            Processing Information
-                          </h3>
+                        <section className="details-section">
 
-                        </div>
+                          <div className="section-title">
 
-                      </div>
+                            <div>
 
+                              <span className="eyebrow">
+                                IMAGE DETAILS
+                              </span>
 
-                      <div className="details-grid">
+                              <h3>
+                                Processing Information
+                              </h3>
 
+                            </div>
 
-                        <div>
-
-                          <span>
-                            FILE FORMAT
-                          </span>
-
-                          <strong>
-
-                            {analysis.image?.format ||
-                              "N/A"}
-
-                          </strong>
-
-                        </div>
+                          </div>
 
 
-                        <div>
+                          <div className="details-grid">
 
-                          <span>
-                            ASPECT RATIO
-                          </span>
+                            <div>
 
-                          <strong>
+                              <span>
+                                FILE FORMAT
+                              </span>
 
-                            {analysis.image?.aspect_ratio ??
-                              "N/A"}
+                              <strong>
 
-                          </strong>
+                                {analysis.image?.format ||
+                                  "N/A"}
 
-                        </div>
+                              </strong>
 
-
-                        <div>
-
-                          <span>
-                            PROCESSING ID
-                          </span>
-
-                          <strong>
-
-                            {result.processing_id ||
-                              "N/A"}
-
-                          </strong>
-
-                        </div>
+                            </div>
 
 
-                        <div>
+                            <div>
 
-                          <span>
-                            PROCESSED AT
-                          </span>
+                              <span>
+                                ASPECT RATIO
+                              </span>
 
-                          <strong>
+                              <strong>
 
-                            {analysis.processed_at
-                              ? new Date(
-                                  analysis.processed_at
-                                ).toLocaleString()
-                              : "N/A"}
+                                {analysis.image?.aspect_ratio ??
+                                  "N/A"}
 
-                          </strong>
+                              </strong>
 
-                        </div>
+                            </div>
 
-                      </div>
 
-                    </section>
+                            <div>
 
-                  </>
+                              <span>
+                                PROCESSING ID
+                              </span>
 
-                )}
+                              <strong>
 
-              </div>
+                                {result.processing_id ||
+                                  "N/A"}
 
-            )}
+                              </strong>
+
+                            </div>
+
+
+                            <div>
+
+                              <span>
+                                PROCESSED AT
+                              </span>
+
+                              <strong>
+
+                                {analysis.processed_at
+                                  ? new Date(
+                                      analysis.processed_at
+                                    ).toLocaleString()
+                                  : "N/A"}
+
+                              </strong>
+
+                            </div>
+
+                          </div>
+
+                        </section>
+
+                      </>
+
+                    )}
+
+                </div>
+
+              )}
 
           </div>
 
@@ -1351,7 +1299,6 @@ function App() {
         =================================================== */}
 
         <section className="feature-strip">
-
 
           <div className="feature-item">
 
@@ -1435,7 +1382,6 @@ function App() {
             </div>
 
           </div>
-
 
         </section>
 
