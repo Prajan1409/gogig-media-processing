@@ -1,8 +1,8 @@
-\# AI Usage Disclosure
+# AI Usage Disclosure
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -18,19 +18,18 @@ All generated suggestions were reviewed, tested, and adapted before being includ
 
 
 
-\---
+---
 
 
 
-\## 1. Where AI Was Used
+## 1. Where AI Was Used
 
 
 
 AI assistance was used during several stages of development.
 
 
-
-\### Development Guidance
+### Development Guidance
 
 
 
@@ -38,17 +37,17 @@ AI was used to:
 
 
 
-\- Break down the assignment into smaller implementation tasks.
+- Break down the assignment into smaller implementation tasks.
 
-\- Suggest approaches for implementing the image-processing workflow.
+- Suggest approaches for implementing the image-processing workflow.
 
-\- Help understand FastAPI, React, MongoDB, and deployment configuration.
+- Help understand FastAPI, React, MongoDB, and deployment configuration.
 
-\- Suggest project structure and implementation strategies.
+- Suggest project structure and implementation strategies.
 
 
 
-\### Frontend Development
+### Frontend Development
 
 
 
@@ -56,17 +55,17 @@ AI assistance was used for:
 
 
 
-\- Improving the React interface structure.
+- Improving the React interface structure.
 
-\- Refining the analysis results dashboard.
+- Refining the analysis results dashboard.
 
-\- Improving the layout and presentation of processing results.
+- Improving the layout and presentation of processing results.
 
-\- Suggesting UI text and component organization.
+- Suggesting UI text and component organization.
 
 
 
-\### Backend and API Development
+### Backend and API Development
 
 
 
@@ -74,19 +73,19 @@ AI was used to assist with:
 
 
 
-\- FastAPI endpoint implementation and debugging.
+- FastAPI endpoint implementation and debugging.
 
-\- API integration between the frontend and backend.
+- API integration between the frontend and backend.
 
-\- CORS configuration.
+- CORS configuration.
 
-\- MongoDB connection troubleshooting.
+- MongoDB connection troubleshooting.
 
-\- Deployment configuration.
+- Deployment configuration.
 
 
 
-\### Documentation
+### Documentation
 
 
 
@@ -94,23 +93,23 @@ AI was also used to help:
 
 
 
-\- Structure the README.
+- Structure the README.
 
-\- Explain project features and processing flow.
+- Explain project features and processing flow.
 
-\- Document API endpoints.
+- Document API endpoints.
 
-\- Document deployment and testing procedures.
+- Document deployment and testing procedures.
 
-\- Improve the clarity and organization of project documentation.
-
-
-
-\---
+- Improve the clarity and organization of project documentation.
 
 
 
-\## 2. What AI Helped With
+---
+
+
+
+## 2. What AI Helped With
 
 
 
@@ -118,19 +117,19 @@ AI primarily helped with:
 
 
 
-\- Understanding implementation requirements.
+- Understanding implementation requirements.
 
-\- Debugging errors and configuration issues.
+- Debugging errors and configuration issues.
 
-\- Suggesting code changes.
+- Suggesting code changes.
 
-\- Improving UI presentation.
+- Improving UI presentation.
 
-\- Explaining deployment errors.
+- Explaining deployment errors.
 
-\- Structuring technical documentation.
+- Structuring technical documentation.
 
-\- Reviewing implementation approaches.
+- Reviewing implementation approaches.
 
 
 
@@ -142,11 +141,11 @@ The final implementation was reviewed and tested manually.
 
 
 
-\---
+---
 
 
 
-\## 3. Where AI Output Was Wrong or Needed Correction
+## 3. Where AI Output Was Wrong or Needed Correction
 
 
 
@@ -154,7 +153,7 @@ AI-generated suggestions were not always correct and required verification.
 
 
 
-\### OCR Deployment
+### OCR Deployment
 
 
 
@@ -170,7 +169,7 @@ The OCR-related UI was then adjusted so that internal installation errors would 
 
 
 
-\### MongoDB Connection
+### MongoDB Connection
 
 
 
@@ -186,7 +185,7 @@ The connection was subsequently verified successfully.
 
 
 
-\### CORS Configuration
+### CORS Configuration
 
 
 
@@ -198,7 +197,7 @@ The deployed frontend URL was added to the backend CORS configuration and the ap
 
 
 
-\### Deployment Configuration
+### Deployment Configuration
 
 
 
@@ -230,11 +229,11 @@ These examples demonstrate that AI suggestions were treated as recommendations a
 
 
 
-\---
+---
 
 
 
-\## 4. How AI-Generated Code Was Validated
+## 4. How AI-Generated Code Was Validated
 
 
 
@@ -242,7 +241,7 @@ AI-assisted changes were validated through actual development and deployment tes
 
 
 
-\### Local Testing
+### Local Testing
 
 
 
@@ -250,9 +249,9 @@ The application was run locally using:
 
 
 
-\- Frontend: http://localhost:5173
+- Frontend: http://localhost:5173
 
-\- Backend: http://localhost:8000
+- Backend: http://localhost:8000
 
 
 
@@ -260,7 +259,7 @@ The frontend was tested by uploading images and checking whether the backend ret
 
 
 
-\### API Testing
+### API Testing
 
 
 
@@ -268,17 +267,17 @@ The backend endpoints were tested to verify:
 
 
 
-\- Image upload
+- Image upload
 
-\- Processing status
+- Processing status
 
-\- Processing results
+- Processing results
 
-\- MongoDB connectivity
+- MongoDB connectivity
 
 
 
-\### Functional Testing
+### Functional Testing
 
 
 
@@ -286,19 +285,19 @@ Multiple image scenarios were tested, including:
 
 
 
-\- Unique images
+- Unique images
 
-\- Duplicate images
+- Duplicate images
 
-\- Blurry images
+- Blurry images
 
-\- Different image formats
+- Different image formats
 
-\- Different image dimensions
+- Different image dimensions
 
 
 
-\### Deployment Testing
+### Deployment Testing
 
 
 
@@ -318,11 +317,11 @@ The deployed application was manually tested after deployment to confirm that up
 
 
 
-\---
+---
 
 
 
-\## 5. Human Verification
+## 5. Human Verification
 
 
 
@@ -334,21 +333,21 @@ The final decisions regarding:
 
 
 
-\- Application behavior
+- Application behavior
 
-\- UI design
+- UI design
 
-\- API configuration
+- API configuration
 
-\- Database configuration
+- Database configuration
 
-\- Deployment
+- Deployment
 
-\- Testing
+- Testing
 
-\- Error handling
+- Error handling
 
-\- Documentation
+- Documentation
 
 
 
@@ -360,11 +359,11 @@ AI-generated code was therefore treated as an aid during development rather than
 
 
 
-\---
+---
 
 
 
-\## 6. AI Tools Used
+## 6. AI Tools Used
 
 
 
@@ -372,9 +371,9 @@ The primary AI assistance used during development included:
 
 
 
-\- Claude
+- Claude
 
-\- ChatGPT
+- ChatGPT
 
 
 
@@ -382,11 +381,11 @@ These tools were used for development guidance, debugging, code review, document
 
 
 
-\---
+---
 
 
 
-\## 7. Final Statement
+## 7. Final Statement
 
 
 
